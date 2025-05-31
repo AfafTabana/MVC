@@ -1,0 +1,54 @@
+﻿@model CourseAddViewModel
+
+
+@{
+    SelectList _deptlist = new SelectList(Model.detps, "Id", "Name");
+    
+    Layout = "_Layout1";
+
+
+}
+
+<form asp-action="SaveAdd">
+    <div>
+        <label asp-for="Name"></label>
+        <input class="form form-control" asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="degree"></label>
+        <input class="form form-control" asp-for="degree" />
+        <span asp-validation-for="degree" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="mindegree"></label>
+        <input class="form form-control" asp-for="mindegree" />
+        <span asp-validation-for="mindegree" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="hours"></label>
+        <input class="form form-control" asp-for="hours" />
+        <span asp-validation-for="hours" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="DeptId"></label>
+        <select class="form form-control" asp-for="DeptId" asp-items="@_deptlist">
+
+        </select>
+        <span asp-validation-for="DeptId" class="text-danger"></span>
+    </div>
+    <br />
+    <div>
+        <input type="submit" class="btn-dark" />
+    </div>
+ 
+
+</form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

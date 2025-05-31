@@ -1,0 +1,64 @@
+﻿@model MyPaginationViewModel<Instructor>
+
+<h1>My Instructors</h1>
+
+<form asp-action="Search" class="mb-3">
+    <label for="Name">Search by Name</label>
+    <input type="text" name="Name" class="form-control" />
+    <button type="submit" class="btn btn-dark mt-2">Search</button>
+</form>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Image</th>
+        <th>Address</th>
+        <th>CrsId</th>
+        <th>DeptId</th>
+    </tr>
+    @foreach (Instructor item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.salary</td>
+            <td><img src="/images/@item.imag" width="100" height="100" /></td>
+            <td>@item.address</td>
+            <td>@item.CrsId</td>
+            <td>@item.DeptId</td>
+            <td> <a href="/Instructor/Details/@item.Id" class="btn btn-dark">Go To Your Page</a></td>
+            <td><button class="btn btn-dark" onclick="ConfirmDelete('@item.Id')">Delete</button></td>
+
+        </tr>
+    }
+</table>
+
+<nav>
+    <ul class="pagination">
+        @if (Model.HavePriviousPage)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.pageIndex - 1)">Previous</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= Model.totalpages; i++)
+        {
+            <li class="page-item @(i == Model.pageIndex ? "active" : "")">
+                <a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a>
+            </li>
+        }
+
+        @if (Model.HaveNextPage)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.pageIndex + 1)">Next</a>
+            </li>
+        }
+    </ul>
+</nav>
+
+<a href="/Instructor/Add" class="btn btn-dark">New Instructor</a>
+
+<script src="/js/Confirmation.js"></script>

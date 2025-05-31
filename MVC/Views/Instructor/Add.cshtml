@@ -1,0 +1,61 @@
+﻿@using MVC.ViewModels
+@model InstructorAddViewModel
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form action="/Instructor/SaveAdd" method="post" enctype="multipart/form-data">
+   <div>
+        <label class="form-label">Name</label>
+        <input name="Name" type="text" class="form-control" value="@Model.Name"/>
+   </div>
+
+    <div>
+        <label class="form-label">imag</label>
+        <input name="photo" type="file" class="form-control" value="@Model.imag" />
+    </div>
+
+
+    <div>
+        <label class="form-label">salary</label>
+        <input name="salary" type="number" class="form-control" value="@Model.salary" />
+    </div>
+
+    <div>
+        <label class="form-label">Address</label>
+        <input name="address" type="text" class="form-control" value="@Model.address" />
+    </div>
+
+    <div>
+        <label class="form-label">Departments</label>
+        <select class="form-control" name="DeptId">
+        @foreach (Department item in Model.DeptList)
+        {
+
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+
+
+    <div>
+        <label class="form-label">Courses</label>
+        <select class="form-control" name="CrsId">
+        @foreach (Course item in Model.Courses)
+        {
+
+                <option value="@item.Id">@item.Name</option>
+        }
+        </select>
+    </div>
+    <br />
+    <div>
+
+        <input name="Add" type="submit" class="btn btn-dark" />
+
+    </div>
+
+</form>

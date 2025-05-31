@@ -1,0 +1,21 @@
+﻿
+@using MVC.ViewModels
+@model List<CourseResultViewModel>
+
+<h1> Degree of Course : @Model.FirstOrDefault().CourseName</h1>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>CourseName</th>
+        <th>Degree</th>
+        <th>Status</th>
+    </tr>
+    @foreach (CourseResultViewModel q in Model)
+    {
+        <tr style=" background-color :@q.Color">
+            <td>@q.traineeName</td>
+            <td>@q.degree</td>
+            <td>@q.Status</td>
+        </tr>
+    }
+
+</table>
